@@ -1,0 +1,7 @@
+{
+    "jest.pathToJest": "",
+    "jest.restartJestOnSnapshotUpdate": true,
+    "cSpell.words": [
+        "respondant"
+    ]
+}

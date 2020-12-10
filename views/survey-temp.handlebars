@@ -1,0 +1,268 @@
+<div class="container wrapper">
+	<div class="content">
+		<div class="content-area">
+			{{!--- implementation for index page goes here---}}
+			<div class="card">
+				<div class="card-body content-area-display">
+					{{#each sanitizeData}}
+					<div>
+						<form method="POST" action="/survey" name="surveyCapture" id="surveyCapture">
+							<h1 class="suv-title">{{title}}</h1>
+							<ul class="list-group">
+								<h3>{{question1.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q1" class="" value="{{question1.option1}}">
+									{{question1.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q1" class="" value="{{question1.option2}}">
+									{{question1.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q1" class="" value="{{question1.option3}}">
+									{{question1.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q1" class="" value="{{question1.option4}}">
+									{{question1.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q1" class="" value="{{question1.option5}}">
+									{{question1.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question2.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q2" class="" value="{{question2.option1}}">
+									{{question2.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q2" class="" value="{{question2.option2}}">
+									{{question2.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q2" class="" value="{{question2.option3}}">
+									{{question2.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q2" class="" value="{{question2.option4}}">
+									{{question2.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q2" class="" value="{{question2.option5}}">
+									{{question2.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question3.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q3" class="" value="{{question3.option1}}">
+									{{question3.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q3" class="" value="{{question3.option2}}">
+									{{question3.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q3" class="" value="{{question3.option3}}">
+									{{question3.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q3" class="" value="{{question3.option4}}">
+									{{question3.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q3" class="" value="{{question3.option5}}">
+									{{question3.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question4.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q4" class="" value="{{question4.option1}}">
+									{{question4.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q4" class="" value="{{question4.option2}}">
+									{{question4.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q4" class="" value="{{question4.option3}}">
+									{{question4.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q4" class="" value="{{question4.option4}}">
+									{{question4.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q4" class="" value="{{question4.option5}}">
+									{{question4.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question5.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q5" class="" value="{{question5.option1}}">
+									{{question5.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q5" class="" value="{{question5.option2}}">
+									{{question5.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q5" class="" value="{{question5.option3}}">
+									{{question5.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q5" class="" value="{{question5.option4}}">
+									{{question5.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q5" class="" value="{{question5.option5}}">
+									{{question5.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question6.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q6" class="" value="{{question6.option1}}">
+									{{question6.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q6" class="" value="{{question6.option2}}">
+									{{question6.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q6" class="" value="{{question6.option3}}">
+									{{question6.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q6" class="" value="{{question6.option4}}">
+									{{question6.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q6" class="" value="{{question6.option5}}">
+									{{question6.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question7.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q7" class="" value="{{question7.option1}}">
+									{{question7.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q7" class="" value="{{question7.option2}}">
+									{{question7.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q7" class="" value="{{question7.option3}}">
+									{{question7.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q7" class="" value="{{question7.option4}}">
+									{{question7.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q7" class="" value="{{question7.option5}}">
+									{{question7.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question8.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q8" class="" value="{{question8.option1}}">
+									{{question8.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q8" class="" value="{{question8.option2}}">
+									{{question8.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q8" class="" value="{{question8.option3}}">
+									{{question8.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q8" class="" value="{{question8.option4}}">
+									{{question8.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q8" class="" value="{{question8.option5}}">
+									{{question8.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question9.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q9" class="" value="{{question9.option1}}">
+									{{question9.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q9" class="" value="{{question9.option2}}">
+									{{question9.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q9" class="" value="{{question9.option3}}">
+									{{question9.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q9" class="" value="{{question9.option4}}">
+									{{question9.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q9" class="" value="{{question9.option5}}">
+									{{question9.option5}}
+								</li>
+							</ul>
+
+							<ul class="list-group">
+								<h3>{{question10.question}}</h3>
+								<li class="list-group-item">
+									<input type="radio" name="q10" class="1" value="{{question10.option1}}">
+									{{question10.option1}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q10" class="" value="{{question10.option2}}">
+									{{question10.option2}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q10" class="" value="{{question10.option3}}">
+									{{question10.option3}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q10" class="" value="{{question10.option4}}">
+									{{question10.option4}}
+								</li>
+								<li class="list-group-item">
+									<input type="radio" name="q10" class="" value="{{question10.option5}}">
+									{{question10.option5}}
+								</li>
+							</ul>
+							<p>
+								<button type="submit" class="btn btn-lg submit">Submit Survey</button>
+								<button type="button" class="btn btn-lg cancel">Cancel Survey</button>
+							</p>
+							<input type="hidden" name="surveyTitle" value="{{title}}">
+							<input type="hidden" name="id" value="{{surveyNumber}}">
+						</form>
+						<caption>
+							<i>CREATED ON </i><span id="created-date">{{dateCreated}}</span>
+						</caption>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>

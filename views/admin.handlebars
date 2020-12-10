@@ -1,0 +1,65 @@
+<div class="container wrapper">
+	<div class="content">
+		<div class="content-area">
+			{{!--- implementation for index page goes here---}}
+			<div class="card">
+				<div class="card-body content-area-display">
+					{{! Create a dialogue that helps the admin with the help of super admin to configure its Perm key access}}
+
+					<div id="modal">
+						<!-- Modal -->
+						<div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+							aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title h3" id="staticBackdropLabel">
+											<i class=" fa fa-lock" aria-hidden="true"></i> Activation Page</h5>
+									</div>
+									<div class="modal-body">
+										<em class="h4">Provide your permanent key to enable you access your account<br>
+											<small>system administrator will acknowledge it, but your key is secret to you</small>
+										</em>
+										<hr>
+										<form>
+											<div class="container">
+												<div class="row">
+													<div class="col k-h">
+														Temporal key
+													</div>
+													<div class="col k-h">
+														Permanent key
+													</div>
+													<div class="col k-h">
+													Super Admin Password
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														{{initKey}}
+													</div>
+													<div class="col">
+														<input type="text" name="perm" id="perm">
+													</div>
+													<div class="col">
+														<input type="text" name="supAdmin" id="supAdmin">
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn cls">Back to login</button>
+										<button type="button" class="btn activate">Activate Account</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="test"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container wrapper">
+	<div class="">
+		{{#section 'header'}}
+		{{>header}}
+		{{/section}}
+	</div>
+	<div class="content">
+		{{>slider}}
+		<div class="content-area">
+			{{!--- implementation for index page goes here---}}
+			<div class="card">
+				<div class="card-body content-area-display">
+					{{! populate this area from surveys }}
+					<div class="row">
+						<div class="col-md-8">
+							<h1 class="surv-l-h h3">Archived collections of our survey in various fields</h1>
+							<p class="sub-t">Please take your time and help us provide answers to the following survey questions</p>
+							{{#each surveyContext}}
+							{{#if surveyNumber}}
+							<div class="suv-cont">
+								<div class="form-check" id="form-check">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input title" name="title" id="title" value="checkedValue">
+										{{title}}
+										<input type="hidden" name="surveyTitle" value="{{title}}">
+										<input type="hidden" name="surveyId" value="{{surveyNumber}}">
+									</label>
+								</div>
+							</div>
+							{{/if}}
+							{{else}}
+							<div>
+								<p>No data</p>
+							</div>
+							{{/each}}
+						</div>
+						<div class="col-md-4">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+
+						</div>
+						<div class="col-md-8 res">
+							<iframe name="response">
+
+							</iframe>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<div class="">
+		{{#section 'footer'}}
+		{{>footer}}
+		{{/section}}
+	</div>
+</div>

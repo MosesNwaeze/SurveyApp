@@ -1,0 +1,55 @@
+<div class="container wrapper">
+	<div class="">
+		{{#section 'header'}}
+		{{>header}}
+		{{/section}}
+	</div>
+	<div class="content">
+		{{>slider}}
+		<div class="content-area">
+			{{!--- implementation for index page goes here---}}
+			<div class="card">
+				<div class="card-body content-area-display">
+					<form class="form" method="post" action="/users-login" enctype="application/x-www-form-urlencoded"
+						name="login" id="login">
+						<h3 class="form-title h3">Please Login</h3>
+						<div class="form-group">
+							<label for="username"> <i class="fa fa-user"></i> Email:</label>
+							<input type="text" name="email" class="form-control" placeholder="email" id="username">
+						</div>
+						<div class="form-group">
+							<label for="password"><i class="fa fa-lock"></i> Password:</label>
+							<input type="password" name="password" class="form-control" placeholder="password" id="password">
+						</div>
+						{{! create effect for admin only section}}
+						<p>
+							<button class="btn admin" type="button" data-toggle="collapse" data-target="#collapseExample"
+								aria-expanded="false" aria-controls="collapseExample">
+								ADMINS ONLY
+							</button>
+						</p>
+						<div class="collapse" id="collapseExample">
+							<div class="card card-body">
+								<div class="form-group admin-key">
+
+									<label for="key"><i class="fa fa-lock"></i> Permanent key:</label>
+									<input type="text" name="key" class="form-control" placeholder="$1235467htswyndo" id="key">
+								</div>
+							</div>
+						</div>
+						<p></p>
+						<p>
+							<button class="btn btn-lg form-login form-group" type="submit"><i class="fa fa-check-circle"></i>
+								Login</button>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		{{#section 'footer'}}
+		{{>footer}}
+		{{/section}}
+	</div>
+</div>
