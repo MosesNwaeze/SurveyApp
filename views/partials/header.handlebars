@@ -1,29 +1,41 @@
+{{#if sessId}}
+{{#section 'script'}}
+<script>
+  jQuery(function () {
+    document.querySelector(".logout").style.removeProperty("display");
+    document.querySelector("button.join-for-free").style.display = "none";
+    document.querySelector(".user").style.removeProperty("display");
+    document.querySelector(".login").style.display = "none";
+  });
+</script>
+{{/section}}
+{{/if}}
 <header id="header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-1 logo">
-				<a href="/"><img src="/images/logo/logo.jpg" alt="logo" class="img-fluid"></a>
-			</div>
-			<div class="col-md-5 search">
-				<!--<input type="text" placeholder="Search.." class="searc"><button type="button"
-					class="btn btn-md btn-light">search</button>-->
-				<!-- Search form -->
-				<form>
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search...">
-						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="col-md-6 login">
-				<button type="button" class="btn btn-md join-for-free">Join for FREE</button> &nbsp;&nbsp;&nbsp;
-				<a href="/users-login" class="login">Log in</a>{{!-- log in link--}}
-				<a href="#" class="s-setting"> <i class="fa fa-gear"></i> </a> {{!-- implement site setting--}}
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1 logo">
+        <a href="/"><img src="/images/logo/logo.jpg" alt="logo" class="img-fluid"></a>
+      </div>
+      <div class="col-md-5 search">
+        <form method="GET" action="/search" name="search" role="search">
+          <div class="input-group">
+            <input type="search" class="form-control js-typeahead" placeholder="Search..." id="search"
+              spellcheck="false" autocomplete="off" name="q">
+            <div class="input-group-btn">
+              <button class="btn btn-default" id="search-button" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 logins">
+        <span class="user" id="user">Welcome <b>{{user.name}}</b></span>
+        <button type="button" class="btn btn-md join-for-free">Join for FREE</button> &nbsp;&nbsp;&nbsp;
+        <a href="/login" class="login">Log in</a>
+        <a href="/logout" class="logout">Log out</a>
+        <a href="#" class="s-setting"> <i class="fa fa-gear"></i> </a> {{!-- implement site setting--}}
+      </div>
+    </div>
+  </div>
 </header>

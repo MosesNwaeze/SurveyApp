@@ -6,16 +6,22 @@ const options = {
   useUnifiedTopology: true,
   useCreateIndex: true,
 };
-const connect = mongoose.connect(
-  process.env.DB_CONNECTION,
-  options,
-  (err, connection) => {
-    if (err) {
-      console.error(`Unable to connect to db ${err.stack}`);
-      return;
-    }
-    console.log(`server connected at ${connection}`);
-  }
-);
+
 autoIncrement.initialize(mongoose.connection);
-module.exports = connect;
+module.exports = {
+  startServer: () => {
+    mongoose.connect(process.env.DB_CONNECTION, options);
+    const connection = mongoose.connection;
+    connection.once("open", function () {
+      console.log("Connection established successfully");
+    });
+  },
+  shutdownServer: () => {
+    mongoose.disconnect((err) => {
+      if (err) {
+        console.log("Error disconnecting from the server");
+      }
+      console.log("Db has being disconnected successfully");
+    });
+  },
+};

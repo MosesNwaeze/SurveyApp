@@ -41,11 +41,16 @@ exports.user = (req, res, next) => {
                   "You are not up to the required age to use this application",
               });
             } else {
-              if (req.session && !req.session.fullName) {
-                req.session.fullName = data.firstName + " " + data.lastName;
+              const payload = {};
+              if (req.session) {
+                req.session.user = {};
+                req.session.user.name = data.firstName + " " + data.lastName;
+                req.session.user.email = data.email;
               }
-              const token = jwt.sign(user, process.env.TOKEN_SECRET, {
-                expiresIn: "2h",
+              payload.name = data.firstName + " " + data.lastName;
+              payload.email = data.email;
+              const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
+                expiresIn: "1h",
               });
               return res.status(200).json({
                 status: "success",
@@ -88,15 +93,17 @@ exports.admin = (req, res, next) => {
               console.log("Error in persisting data \n" + err.stack);
               next(createError(500));
             }
-
-            const token = jwt.sign(user, process.env.TOKEN_SECRET, {
+            payload.name = data.firstName + " " + data.lastName;
+            payload.email = data.email;
+            const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
               expiresIn: "2h",
             });
 
             if (req.session) {
+              req.session.user = {};
               req.session.initKey = admin.getInitialKey();
-              req.session.email = req.body.email;
-              req.session.fullName = req.body.firstName + " " + req.body.lastName;
+              req.session.user.email = req.body.email;
+              req.session.user.name = req.body.firstName + " " + req.body.lastName;
               return res.status(200).json({
                 status: "success",
                 data: req.body.email,

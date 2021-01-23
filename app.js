@@ -2,10 +2,11 @@ const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
+const { getResponse } = require("./routes/getResponse");
 const capture = require("./routes/surveyCapture");
-const testData = require("./routes/testData");
-
+//const testData = require("./routes/testData");
 //const questions = require("./routes/questionHelper");
+
 const handlebars = require("express3-handlebars").create({
   defaultLayout: "main",
   helpers: {
@@ -17,7 +18,6 @@ const handlebars = require("express3-handlebars").create({
   },
 });
 require("dotenv").config();
-//const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -36,23 +36,27 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(require("cookie-parser")(process.env.COOKIE_SECRET));
+
 // Handle db persistence for session
 app.use(
   require("express-session")({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
-    resave: false,
-    cookie: { maxAge: 60000 },
+    resave: true,
+    maxAge: 2 * 60 * 60 * 1000,
+    cookie: { maxAge: 2 * 60 * 60 * 1000 },
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
-  //const getQuestions = questions(req,res);
+  res.locals.responses = getResponse();
+  //const getQuestions = questions(req, res);
   const surveyContext = capture.getData().flat(2);
   const details = capture.getDetails();
   res.locals.surveyContext = surveyContext;
   res.locals.details = details;
   //res.locals.questions = getQuestions;
+  res.locals.user = req.session.user;
   next();
 });
 
@@ -65,7 +69,6 @@ app.use(responsesController);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  //next(createError(404));
   res.render("404", { layout: null });
 });
 

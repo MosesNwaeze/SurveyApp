@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Admin = require("../models/admin");
 const bcrypt = require("bcrypt");
 const createError = require("http-errors");
+const jwt = require("jsonwebtoken");
 
 exports.user = (req, res, next) => {
   User.findOne({ email: req.body.email }, (err, data) => {
@@ -18,17 +19,24 @@ exports.user = (req, res, next) => {
 
           if (result) {
             if (req.session) {
-              if (!req.session.fullName) {
-                req.session.fullName = data.firstName + " " + data.lastName;
-              }
-              req.session.email = data.email;
+              req.session.user = {};
+              req.session.user.name = data.firstName + " " + data.lastName;
+              req.session.user.email = data.email;
+              req.session.user.id = data._id;
             }
+            const user = {};
+            user.name = data.firstName + " " + data.lastName;
+            user.email = data.email;
             const token = jwt.sign(user, process.env.TOKEN_SECRET, {
-              expiresIn: "2h",
+              expiresIn: "1h",
             });
+            const resData = {
+              email : data.email,
+              id : data._id
+            };
             return res.status(200).json({
               status: "success",
-              data: data.email,
+              data: resData,
               token,
             });
           } else {
@@ -64,7 +72,9 @@ exports.admin = (req, res, next) => {
         if (pass) {
           if (data.email === req.body.email && data.permKey === req.body.key) {
             if (req.session) {
-              req.session.fullName = data.firstName + " " + data.lastName;
+              req.session.user = {};
+              req.session.user.name = data.firstName + " " + data.lastName;
+              req.session.user.email = req.body.email;
             }
             const token = jwt.sign(user, process.env.TOKEN_SECRET, {
               expiresIn: "2h",

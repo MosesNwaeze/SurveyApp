@@ -2,6 +2,12 @@
     "jest.pathToJest": "",
     "jest.restartJestOnSnapshotUpdate": true,
     "cSpell.words": [
-        "respondant"
+        "advlist",
+        "pagebreak",
+        "referrerpolicy",
+        "respondant",
+        "tinymce",
+        "topbar",
+        "typeahead"
     ]
 }

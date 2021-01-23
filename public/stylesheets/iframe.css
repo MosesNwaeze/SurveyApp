@@ -1,0 +1,18 @@
+.table {
+  border-style: ridge;
+  border-width: 150px;
+  border-color: black;
+  margin: 0;
+}
+
+th {
+  border: 20px groove #3765A3;
+  text-align: center;
+}
+
+.surv-l-h {
+  font-size: larger;
+  text-transform: capitalize;
+  font-weight: 700;
+  color: #A5032F
+}

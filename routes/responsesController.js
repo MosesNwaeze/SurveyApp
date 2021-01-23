@@ -4,79 +4,587 @@ const createError = require("http-errors");
 const ResponseModel = require("../models/response");
 const UserModel = require("../models/user");
 const survey = require("../models/survey");
+const collect = require("collect");
+const options = require("./optionsMapping").options;
+
+const getChecked = (name) => {
+  const keys = Object.keys(name);
+  const data = [];
+  keys.map((item) => {
+    if (item === "q1") {
+      switch (name.q1) {
+        case "option1":
+          return data.push({
+            ques: "q1",
+            key: "option1",
+            value: "option1",
+            data: name["data-0"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q1",
+            key: "option2",
+            value: "option2",
+            data: name["data-0"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q1",
+            key: "option3",
+            value: "option3",
+            data: name["data-0"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q1",
+            key: "option4",
+            value: "option4",
+            data: name["data-0"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q1",
+            key: "option5",
+            value: "option5",
+            data: name["data-0"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q2") {
+      switch (name.q2) {
+        case "option1":
+          return data.push({
+            ques: "q2",
+            key: "option1",
+            value: "option1",
+            data: name["data-1"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q2",
+            key: "option2",
+            value: "option2",
+            data: name["data-1"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q2",
+            key: "option3",
+            value: "option3",
+            data: name["data-1"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q2",
+            key: "option4",
+            value: "option4",
+            data: name["data-1"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q2",
+            key: "option5",
+            value: "option5",
+            data: name["data-1"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q3") {
+      switch (name.q3) {
+        case "option1":
+          return data.push({
+            ques: "q3",
+            key: "option1",
+            value: "option1",
+            data: name["data-2"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q3",
+            key: "option2",
+            value: "option2",
+            data: name["data-2"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q3",
+            key: "option3",
+            value: "option3",
+            data: name["data-2"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q3",
+            key: "option4",
+            value: "option4",
+            data: name["data-2"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q3",
+            key: "option5",
+            value: "option5",
+            data: name["data-2"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q4") {
+      switch (name.q4) {
+        case "option1":
+          return data.push({
+            ques: "q4",
+            key: "option1",
+            value: "option1",
+            data: name["data-3"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q4",
+            key: "option2",
+            value: "option2",
+            data: name["data-3"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q4",
+            key: "option3",
+            value: "option3",
+            data: name["data-3"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q4",
+            key: "option4",
+            value: "option4",
+            data: name["data-3"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q4",
+            key: "option5",
+            value: "option5",
+            data: name["data-3"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q5") {
+      switch (name.q5) {
+        case "option1":
+          return data.push({
+            ques: "q5",
+            key: "option1",
+            value: "option1",
+            data: name["data-4"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q5",
+            key: "option2",
+            value: "option2",
+            data: name["data-4"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q5",
+            key: "option3",
+            value: "option3",
+            data: name["data-4"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q5",
+            key: "option4",
+            value: "option4",
+            data: name["data-4"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q5",
+            key: "option5",
+            value: "option5",
+            data: name["data-4"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q6") {
+      switch (name.q6) {
+        case "option1":
+          return data.push({
+            ques: "q6",
+            key: "option1",
+            value: "option1",
+            data: name["data-5"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q6",
+            key: "option2",
+            value: "option2",
+            data: name["data-5"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q6",
+            key: "option3",
+            value: "option3",
+            data: name["data-5"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q6",
+            key: "option4",
+            value: "option4",
+            data: name["data-5"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q6",
+            key: "option5",
+            value: "option5",
+            data: name["data-5"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q7") {
+      switch (name.q7) {
+        case "option1":
+          return data.push({
+            ques: "q7",
+            key: "option1",
+            value: "option1",
+            data: name["data-6"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q7",
+            key: "option2",
+            value: "option2",
+            data: name["data-6"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q7",
+            key: "option3",
+            value: "option3",
+            data: name["data-6"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q7",
+            key: "option4",
+            value: "option4",
+            data: name["data-6"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q7",
+            key: "option5",
+            value: "option5",
+            data: name["data-6"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q8") {
+      switch (name.q8) {
+        case "option1":
+          return data.push({
+            ques: "q8",
+            key: "option1",
+            value: "option1",
+            data: name["data-7"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q8",
+            key: "option2",
+            value: "option2",
+            data: name["data-7"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q8",
+            key: "option3",
+            value: "option3",
+            data: name["data-7"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q8",
+            key: "option4",
+            value: "option4",
+            data: name["data-7"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q8",
+            key: "option5",
+            value: "option5",
+            data: name["data-7"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q9") {
+      switch (name.q9) {
+        case "option1":
+          return data.push({
+            ques: "q9",
+            key: "option1",
+            value: "option1",
+            data: name["data-8"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q9",
+            key: "option2",
+            value: "option2",
+            data: name["data-8"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q9",
+            key: "option3",
+            value: "option3",
+            data: name["data-8"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q9",
+            key: "option4",
+            value: "option4",
+            data: name["data-8"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q9",
+            key: "option5",
+            value: "option5",
+            data: name["data-8"],
+          });
+
+        default:
+          break;
+      }
+    } else if (item === "q10") {
+      switch (name.q10) {
+        case "option1":
+          return data.push({
+            ques: "q10",
+            key: "option1",
+            value: "option1",
+            data: name["data-9"],
+          });
+
+        case "option2":
+          return data.push({
+            ques: "q10",
+            key: "option2",
+            value: "option2",
+            data: name["data-9"],
+          });
+
+        case "option3":
+          return data.push({
+            ques: "q10",
+            key: "option3",
+            value: "option3",
+            data: name["data-9"],
+          });
+
+        case "option4":
+          return data.push({
+            ques: "q10",
+            key: "option4",
+            value: "option4",
+            data: name["data-9"],
+          });
+
+        case "option5":
+          return data.push({
+            ques: "q10",
+            key: "option5",
+            value: "option5",
+            data: name["data-9"],
+          });
+
+        default:
+          break;
+      }
+    }
+  });
+  return data;
+};
 
 // sanitize the data returned by db
-router.post("/survey", (req, res, next) => {
+router.post("/survey", async (req, res, next) => {
   if (req.xhr || req.accepts("json")) {
     try {
-      // before a user can post get id
-      ResponseModel.findOne({ surveyNumber: parseInt(req.body.id) })
-        .populate("respondantId")
-        .exec((err, data) => {
+      if (!req.session.user) {
+        res.redirect(303, "/users-login");
+      }
+
+      const checked = getChecked(req.body);
+      const userEntity = await UserModel.findOne(
+        { email: req.session.user.email },
+        (err) => {
           if (err) {
-            console.log("error retrieving an object");
-            return next(createError("Internal server error"));
+            console.log(err.message);
           }
-          if (!data.respondantId) {
+        }
+      );
+
+      await ResponseModel.findOne(
+        { respondantId: userEntity.getId(req.session.user.email) },
+        (err, result) => {
+          if (err) {
+            console.log(err.message);
+          }
+
+          if (result) {
+            return res.status(400).json({
+              status: "error",
+              data: "You have already submitted response on this survey",
+            });
+          } else {
             new ResponseModel({
-              surveyTitle: req.body.title,
+              surveyTitle: req.body.surveyTitle,
               surveyNumber: parseInt(req.body.id),
-              respondantId: UserModel._id,
+              respondantId: userEntity.getId(req.session.user.email),
               question1: {
-                $push: { option: req.body.q1 },
+                $push: {
+                  [question1.options]: {
+                    optionName: checked[0].key,
+                    value: checked[0].data,
+                  },
+                },
               },
+
               question2: {
-                $push: { option: req.body.q2 },
+                options: {
+                  optionName: checked[1].key,
+                  value: checked[1].data,
+                },
               },
               question3: {
-                $push: { option: req.body.q3 },
+                options: {
+                  optionName: checked[2].key,
+                  value: checked[2].data,
+                },
               },
               question4: {
-                $push: { option: req.body.q4 },
+                options: {
+                  optionName: checked[3].key,
+                  value: checked[3].data,
+                },
               },
               question5: {
-                $push: { option: req.body.q5 },
+                options: {
+                  optionName: checked[4].key,
+                  value: checked[4].data,
+                },
               },
               question6: {
-                $push: { option: req.body.q6 },
+                options: {
+                  optionName: checked[5].key,
+                  value: checked[5].data,
+                },
               },
               question7: {
-                $push: { option: req.body.q7 },
+                options: {
+                  optionName: checked[6].key,
+                  value: checked[6].data,
+                },
               },
               question8: {
-                $push: { option: req.body.q8 },
+                options: {
+                  optionName: checked[7].key,
+                  value: checked[7].data,
+                },
               },
               question9: {
-                $push: { option: req.body.q9 },
+                options: {
+                  optionName: checked[8].key,
+                  value: checked[8].data,
+                },
               },
               question10: {
-                $push: { option: req.body.q10 },
+                options: {
+                  optionName: checked[9].key,
+                  value: checked[9].data,
+                },
               },
             }).save((err, result) => {
               if (err) {
-                console.log(err);
+                console.log(err.message);
               }
-              console.log(`saved success ${result}`);
               return res.status(200).json({ status: "success", data: result });
             });
-          } else {
-            return res.status(400).json({
-              status: "error",
-              data: "You have already submitted response for this survey",
-            });
           }
-        });
+        }
+      );
     } catch (e) {
-      console.error(`generated error\n ${e.message}`);
+      console.error(e.message);
     }
   }
 });
+
 const sanitizeData = [];
 router.get("/survey-path", (req, res, next) => {
   const params = req.query;
   const { id, title } = params;
   const { surveyContext } = res.locals;
-  console.log(`id: ${id}, title: ${title}`);
+
   try {
     const context = {
       surveyData: surveyContext.map((result) => {
@@ -185,8 +693,13 @@ router.get("/survey-path", (req, res, next) => {
       title,
     });
   } catch (e) {
-    throw new Error("Unable to perform operation \n" + e.stack);
+    throw new Error(e.message);
   }
+});
+
+router.get("/response", (req, res, next) => {
+  const context = options(req, res);
+  res.render("response", { layout: "iframe", context });
 });
 
 module.exports = router;

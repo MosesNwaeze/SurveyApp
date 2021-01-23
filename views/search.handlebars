@@ -1,0 +1,28 @@
+<div class="container wrapper">
+  <div class="">
+    {{#section 'header'}}
+    {{>header}}
+    {{/section}}
+  </div>
+  <div class="content">
+    <div class="content-area">
+      {{!--- implementation for index page goes here---}}
+      <div class="card">
+        <div class="card-body content-area-display">
+          {{! populate this area from surveys }}
+          <h1>Search returned</h1>
+          <ul>
+            {{#each contained}}
+              <li></li>
+            {{/each}}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="">
+      {{#section 'footer'}}
+      {{>footer}}
+      {{/section}}
+    </div>
+  </div>

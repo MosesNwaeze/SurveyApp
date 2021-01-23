@@ -1,53 +1,70 @@
-require("./connection");
+const dbServer = require("./connection");
 const { Schema, Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-auto-increment");
 
-const ResponseSchema = mongoose.Schema({
-  surveyTitle: String,
-  surveyNumber: Number,
-  question1: {
-    option: [String],
-  },
-  question2: {
-    option: [String],
-  },
-  question3: {
-    option: [String],
-  },
-  question4: {
-    option: [String],
-  },
-  question5: {
-    option1: [String],
-  },
-  question6: {
-    option: [String],
-  },
-  question7: {
-    option: [String],
-  },
-  question8: {
-    option: [String],
-  },
-  question9: {
-    option: [String],
-  },
-  question10: {
-    option: [String],
-  },
-  responseDate: Date,
-  respondantId: [
-    {
+let ResponseSchema;
+try {
+  dbServer.startServer();
+  ResponseSchema = mongoose.Schema({
+    surveyTitle: String,
+    surveyNumber: Number,
+    question1: {
+      options: [{ optionName: String, value: String }],
+    },
+
+    question2: {
+      options: [{ optionName: String, value: String }],
+    },
+    question3: {
+      options: [{ optionName: String, value: String }],
+    },
+    question4: {
+      options: [{ optionName: String, value: String }],
+    },
+    question5: {
+      options: [{ optionName: String, value: String }],
+    },
+    question6: {
+      options: [{ optionName: String, value: String }],
+    },
+    question7: {
+      options: [{ optionName: String, value: String }],
+    },
+    question8: {
+      options: [{ optionName: String, value: String }],
+    },
+    question9: {
+      options: [{ optionName: String, value: String }],
+    },
+    question10: {
+      options: [{ optionName: String, value: String }],
+    },
+    responseDate: {
+      type: Date,
+      default: Date.now,
+    },
+    respondantId: {
       type: Schema.Types.ObjectId,
       ref: "UserModel",
     },
-  ],
-});
+  });
 
-ResponseSchema.plugin(autoIncrement.plugin, {
-  model: "ResponseSchema",
-  field: "surveyNumber",
-  startAt: 1,
-});
+  ResponseSchema.methods.getUser = function (surveyNumber) {
+    if (surveyNumber === this.surveyNumber) {
+      return this.respondantId;
+    }
+  };
+
+  ResponseSchema.plugin(autoIncrement.plugin, {
+    model: "ResponseSchema",
+    field: "surveyNumber",
+    startAt: 1,
+  });
+} catch (e) {
+  console.log(e);
+} finally {
+  // dbServer.shutdownServer();
+}
+
 module.exports = mongoose.model("ResponseModel", ResponseSchema);

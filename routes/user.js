@@ -27,7 +27,7 @@ router.post(
 );
 
 router.post(
-  "/users-login",
+  "/login",
   [
     check("email").isEmail().normalizeEmail(),
     check("password").isLength({ min: 8 }).isAlphanumeric().trim(),
@@ -44,12 +44,22 @@ router.post(
 );
 
 router.get("/users", function (req, res, next) {
+  const user = req.session.user;
   const title = `Welcome - you can start using the app by creating an account `;
-  res.render("reg-form", { title });
+  res.render("reg-form", { title,user });
 });
 
-router.get("/users-login", function (req, res, next) {
-  res.render("login", { title: "Users Authentication Page" });
+router.get("/login", function (req, res, next) {
+  const user = req.session.user;
+  res.render("login", { title: "Users Authentication Page",user });
 });
 
+router.get("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+  res.redirect(303, "/login");
+});
 module.exports = router;

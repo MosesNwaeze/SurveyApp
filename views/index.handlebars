@@ -38,13 +38,21 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-4">
-
+						<div class="col-md-12">
+							<hr>
 						</div>
-						<div class="col-md-8 res">
-							<iframe name="response">
-
-							</iframe>
+					</div>
+					<div class="row .no-padding-margin">
+						<div class="col-md-3 .no-padding-margin">
+							<h1 class="surv-l-r h3">Responses</h1>
+							{{#each responses}}
+							<a target="response-display" href="/response?id={{surveyNumber}}">{{surveyTitle}}</a>
+							{{/each}}
+						</div>
+						<div class="col-md-7 res .no-padding-margin">
+							{{#each responses}}
+							<iframe name="response-display" src="/response?id={{surveyNumber}}"></iframe>
+							{{/each}}
 						</div>
 					</div>
 				</div>
